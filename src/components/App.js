@@ -13,15 +13,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.props.peopleFetch ? (
-          <img src={logo} className="App-logo" alt="logo" />
-        ) : (
-          <ul>
+        <div>
             {this.props.people.map(char => {
               return <li key={char.name}>{char.name}</li>;
             })}
-          </ul>
-        )}
+          </div>
       </div>
     );
   }
@@ -32,10 +28,9 @@ class App extends Component {
 const mapStateToProps = (state) => {
   console.log("My current state is :" + state)
   return {
-    
-    people: state.people,
-    error: state.error,
-    fetching: state.fetching
+    people: state.charsReducer.people,
+    error: state.charsReducer.error,
+    fetching: state.charsReducer.fetching
   }
 }
 export default connect(mapStateToProps, {peopleFetch})(App);
